@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "crm-change-request-client-side-solution",
+    "id": "d755aabc-ab23-44ad-8462-c1c7b531eaac",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.18.2"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "crm-change-request description"
+      },
+      "longDescription": {
+        "default": "crm-change-request description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "crm-change-request Feature",
+        "description": "The feature that activates elements of the crm-change-request solution.",
+        "id": "3b65619a-6a3a-4c69-9bbb-ea4ed6660e66",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/crm-change-request.sppkg"
+  }
+}

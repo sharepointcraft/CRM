@@ -1,0 +1,53 @@
+@import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
+
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.formGrouplabel {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.formGroupinput {
+  width: 95%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+.dropdownItem{
+  margin: 0PX;
+}
+.clientDropdown{
+  margin: 0PX;
+}
+.projectDropdown{
+  margin: 0px;
+}
+.dropdownContent{
+  margin: 0px;
+}
+.taskDropdown{
+  margin: 0px;
+}
