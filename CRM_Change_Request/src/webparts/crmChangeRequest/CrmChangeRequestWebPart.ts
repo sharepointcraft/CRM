@@ -210,49 +210,44 @@ export default class CrmChangeRequestWebPart extends BaseClientSideWebPart<ICrmC
 
 private async makePOSTRequest(client: string, project: string, task: string, requestType: string, startDate: string, description: string): Promise<void> {
   try {
-      const clientId = await this.getLookupItemId('ClientName', 'Client', client);
-      const projectId = await this.getLookupItemId('ClientProject', 'Project', project);
-      const taskId = await this.getLookupItemId('ProjectTask', 'Task', task);
+    const taskId = await this.getLookupItemId('ProjectTask', 'Task', task);
 
-      // Ensure all lookup IDs are valid
-      if (!clientId || !projectId || !taskId) {
-          console.error('Error: Unable to find IDs for lookup values.');
-          return;
+    if (!taskId) {
+      console.error('Error: Unable to find Task ID for the given task.');
+      return;
+    }
+
+    const requestBody = {
+      Description: description, // Mapping 'Description' to the appropriate column
+      ClientId: client,
+      ProjectId: project,
+      TaskId: taskId,
+      RequestType: requestType,
+      StartDate: startDate
+    };
+
+    const requestOptions: ISPHttpClientOptions = {
+      body: JSON.stringify(requestBody),
+      headers: {
+        'Content-Type': 'application/json;odata=nometadata',
+        'Accept': 'application/json;odata=nometadata'
       }
+    };
 
-      // Construct request body
-      const requestBody = {
-          Title: description, // Assuming 'Title' is a required field
-          ClientId: clientId,
-          ProjectId: projectId,
-          TaskId: taskId,
-          RequestType: requestType,
-          StartDate: startDate
-      };
+    const response = await this.context.spHttpClient.post(
+      `${this.context.pageContext.web.absoluteUrl}/_api/web/lists/getbytitle('CRMList')/items`, SPHttpClient.configurations.v1, requestOptions
+    );
 
-      // Configure request options
-      const requestOptions: ISPHttpClientOptions = {
-          body: JSON.stringify(requestBody),
-          headers: {
-              'Content-Type': 'application/json;odata=nometadata',
-              'Accept': 'application/json;odata=nometadata'
-          }
-      };
-
-      // Make POST request to save data
-      const response = await this.context.spHttpClient.post(
-          `${this.context.pageContext.web.absoluteUrl}/_api/web/lists/getbytitle('CRMList')/items`, SPHttpClient.configurations.v1, requestOptions
-      );
-
-      if (response.ok) {
-          console.log('Data submitted successfully.');
-      } else {
-          console.error('Failed to submit data. Status:', response.status, 'Message:', response.statusText);
-      }
+    if (response.ok) {
+      console.log('Data submitted successfully.');
+    } else {
+      console.error('Failed to submit data. Status:', response.status, 'Message:', response.statusText);
+    }
   } catch (error) {
-      console.error('Error submitting data:', error);
+    console.error('Error submitting data:', error);
   }
 }
+
 
 
 
