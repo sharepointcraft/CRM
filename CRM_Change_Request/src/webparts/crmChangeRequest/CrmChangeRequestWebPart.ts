@@ -218,7 +218,7 @@ private async makePOSTRequest(client: string, project: string, task: string, req
     }
 
     const requestBody = {
-      Description: description, // Mapping 'Description' to the appropriate column
+      Description: description, 
       ClientId: client,
       ProjectId: project,
       TaskId: taskId,
